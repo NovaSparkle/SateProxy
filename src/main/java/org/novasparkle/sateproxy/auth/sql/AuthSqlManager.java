@@ -33,7 +33,7 @@ public class AuthSqlManager {
 
     public void createTable() {
         asyncExecutor.executeAsync(String.format("CREATE TABLE IF NOT EXISTS %s" +
-                "(ID int PRIMARY KEY NOT NULL AUTO_INCREMENT," +
+                "(ID int PRIMARY KEY NOT NULL AUTO_INCREMENT, " +
                 "%s varchar(55), " +        // NICKNAME
                 "%s varchar(55), " +       // LOWERCASE_NICK
                 "%s varchar(75), " +      // UUID
@@ -41,7 +41,7 @@ public class AuthSqlManager {
                 "%s varchar(25), " +    // REGISTER_IP
                 "%s varchar(25), " +   // REGISTER_DATE
                 "%s varchar(25), " +  // LAST_LOGIN_IP
-                "%s varchar(25)), ", // LAST_LOGIN_DATE
+                "%s varchar(25))", // LAST_LOGIN_DATE
                 tableName, NICKNAME, LOWERCASE_NICK, UUID, HASH, REGISTER_IP, REGISTER_DATE, LAST_LOGIN_IP, LAST_LOGIN_DATE));
     }
 

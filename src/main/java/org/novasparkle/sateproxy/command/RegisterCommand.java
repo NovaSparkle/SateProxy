@@ -13,6 +13,7 @@ public class RegisterCommand implements SimpleCommand {
     @Override
     public void execute(Invocation invocation) {
         CommandSource source = invocation.source();
+        System.out.println(source.getClass());
         String[] args = invocation.arguments();
         if (args.length < 1) {
             ConfigManager.sendMessage(source, "lowArguments");

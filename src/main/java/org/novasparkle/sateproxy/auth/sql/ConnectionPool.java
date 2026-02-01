@@ -36,11 +36,11 @@ public class ConnectionPool {
         int poolSize = this.validatePositive(section.getInt("poolSize"), "poolSize");
         this.queryTimeout = this.validatePositive(section.getInt("queryTimeout", 30), "queryTimeout");
         this.validationTimeout = this.validatePositive(section.getInt("validationTimeout", 2), "validationTimeout");
-
         Class.forName(driverClass);
+
         this.connectionQueue = new ArrayBlockingQueue<>(poolSize);
 
-        initializePool(poolSize);
+        this.initializePool(poolSize);
     }
 
     private void initializePool(int poolSize) throws SQLException {
@@ -205,7 +205,6 @@ public class ConnectionPool {
         } finally {
             try {
                 connection.setAutoCommit(true);
-                connection.commit();
             } catch (SQLException e) {
                 SateProxy.instance.getLogger().warn("Ошибка при восстановлении autoCommit: {}", e.getMessage());
                 connection.rollback();

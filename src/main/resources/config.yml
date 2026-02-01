@@ -31,9 +31,9 @@ colors:
 
 auth:
   mysql:
-    url: 'jdbc:mysql://localhost:3306/Proxy'
-    username: 'DjuzoSuzuya'
-    password: 'g7#Q!pL2$zR9@xM5&kY8^vS3*eT6%wN4~jU1'
+    url: 'jdbc:mysql://localhost:3306/test'
+    username: 'root'
+    password: '111111'
     driverClass: 'com.mysql.cj.jdbc.Driver'
     poolSize: 10
     maxRetries: 5

@@ -27,6 +27,7 @@ import org.novasparkle.sateproxy.auth.telegram.Bot;
 import org.novasparkle.sateproxy.command.FindCommand;
 import org.novasparkle.sateproxy.command.LoginCommand;
 import org.novasparkle.sateproxy.command.RegisterCommand;
+import org.novasparkle.sateproxy.configuration.ConfigManager;
 import org.simpleyaml.configuration.file.YamlConfiguration;
 import org.slf4j.Logger;
 import org.telegram.telegrambots.longpolling.TelegramBotsLongPollingApplication;
@@ -83,7 +84,7 @@ public class SateProxy {
         this.configFile = new File(dataDirectory, "config.yml");
         this.saveResource("config.yml");
         this.saveResource("telegram.yml");
-        this.asyncExecutor = new AsyncExecutor(this.getConfig().getConfigurationSection("mysql"));
+        this.asyncExecutor = new AsyncExecutor(ConfigManager.getSection("auth.mysql"));
         AuthSqlManager.initialize();
 
         this.telegramBot = new Bot();
@@ -92,7 +93,7 @@ public class SateProxy {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
 
-        CommandManager commandManager = this.getProxyServer().getCommandManager();
+        CommandManager commandManager = this.proxyServer.getCommandManager();
         commandManager.register(commandManager.metaBuilder("find").plugin(this).build(), new FindCommand());
         commandManager.register(commandManager.metaBuilder("login").aliases("l").plugin(this).build(), new LoginCommand());
         commandManager.register(commandManager.metaBuilder("register").aliases("reg").plugin(this).build(), new RegisterCommand());
@@ -146,7 +147,7 @@ public class SateProxy {
             return;
         }
 
-        this.config.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(in, Charsets.UTF_8)));
+        config.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(in, Charsets.UTF_8)));
     }
 
     @Nullable
