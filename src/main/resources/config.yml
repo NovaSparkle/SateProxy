@@ -1,0 +1,107 @@
+colors:
+  LSP_PREFIX:
+    abbr: '\{P\}'
+    variable: "&x&5&4&A&C&F&F[LunaSpring] &f"
+  MAIN_COLOR:
+    abbr: '\{M\}'
+    variable: "&x&5&4&A&C&F&F"
+  SECONDARY_COLOR:
+    abbr: '\{S\}'
+    variable: "&x&9&3&C&B&F&F"
+  SERVER_PREFIX:
+    abbr: '\{SP\}'
+    variable: "&x&5&4&A&C&F&FΞ&f"
+  SERVER_PREFIX_RAW:
+    abbr: '\{SPR\}'
+    variable: "Ξ&f"
+  ERROR_COLOR:
+    abbr: '\{E\}'
+    variable: "&x&F&F&3&B&3&B"
+  PURPLE_COLOR:
+    abbr: '\{PL\}'
+    variable: '&x&D&7&9&5&F&F'
+  LIME_COLOR:
+    abbr: '\{L\}'
+    variable: '&x&0&2&F&B&1&4'
+  YELLOW_COLOR:
+    abbr: '\{Y\}'
+    variable: '&x&e&d&d&3&5&1'
+
+
+
+auth:
+  mysql:
+    url: 'jdbc:mysql://localhost:3306/Proxy'
+    username: 'DjuzoSuzuya'
+    password: 'g7#Q!pL2$zR9@xM5&kY8^vS3*eT6%wN4~jU1'
+    driverClass: 'com.mysql.cj.jdbc.Driver'
+    poolSize: 10
+    maxRetries: 5
+    asyncThreadPoolSize: 10
+  password:
+    regex: '^[a-zA-Z0-9@#&^%*()]$'
+    minLength: 4
+    unsafePasswords:
+      enable: false
+      list:
+        - '1111'
+        - '12345678'
+        - '11111111'
+        - '25800852'
+        - 'qwerty'
+  dateTimeFormat: 'dd.MM.yyyy HH:mm:ss'
+  saltRound: 12
+  attempts: 3
+  loginTimeout: 30 # SECONDS
+  registerTimeout: 30 # SECONDS
+  tableName: 'Auth'
+  sendAfterLogin: 'hub'
+
+serializer: 'LEGACY_AMPERSAND'
+
+localization:
+  anarchy: 'Анархия'
+  hub: 'Хаб'
+  test: 'Тестовый сервер'
+
+permissions:
+  commands:
+    find: 'sateproxy.command.find'
+
+messages:
+  lowArguments: '{SP} Недостаточно аргументов для команды'
+  playerOffline: '{SP} Игрок с ником {S}[player] &fоффлайн!'
+  playerServer: '{SP} Игрок {S}[player] &fнаходится на сервере {S}[server]'
+  timeLeft: '{SP} Времени осталось: {S}[time]'
+  timeout:
+  db:
+    invalidConnection: ''
+    newAttempt: 'Ошибка при исполнении запроса [query]&f, попытка [attempt]'
+  register:
+    lowPassword: '{SP} Минимальная длина пароля - {S}[amount] &fсимволов'
+    unsafePassword: '{SP} Ваш пароль небезопасен, выберите другой'
+    invalidSymbols: '{SP} Ваш пароль содержит недопустимые символы!'
+    successfulRegister: '{SP} Регистрация прошла успешно, приятной игры!'
+    alreadyRegistered: '{SP} Вы уже зарегистрированы на сервере, введите пароль от аккаунта!'
+    title:
+      title: '{S}Регистрация'
+      subtitle: '&fУ вас {S}[attempts] &fпопыток'
+      in: 15
+      stay: 20
+      out: 15
+      repeatEvery: 3
+      timeUnit: SECONDS
+  login:
+    info: '{SP} Войдите с помощью {S}/login [пароль]&f, осталось попыток: {S}[attempts]'
+    unregistered: '{SP} Сначала зарегистрируйтесь с помощью команды {S}/register [пароль]'
+    targetServerNotFound: '{SP} Целевой сервер не найден!'
+    incorrectPassword: '{SP} Неверный пароль, у вас осталось попыток: {S}[attempts]'
+
+    title:
+      title: '{S}Авторизация'
+      subtitle: '&f/register [пароль]'
+      in: 15
+      stay: 20
+      out: 15
+      repeatEvery: 3
+      timeUnit: SECONDS
